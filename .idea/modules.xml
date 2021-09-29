@@ -4,8 +4,12 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/08.jspTest/08.jspTest.iml" filepath="$PROJECT_DIR$/08.jspTest/08.jspTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/09-EL_JST/09-EL_JST.iml" filepath="$PROJECT_DIR$/09-EL_JST/09-EL_JST.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13-cookie_session/13-cookie_session.iml" filepath="$PROJECT_DIR$/13-cookie_session/13-cookie_session.iml" />
+      <module fileurl="file://$PROJECT_DIR$/15_filter/15_filter.iml" filepath="$PROJECT_DIR$/15_filter/15_filter.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/JavaWeb.iml" filepath="$PROJECT_DIR$/.idea/JavaWeb.iml" />
-      <module fileurl="file://$PROJECT_DIR$/book/book.iml" filepath="$PROJECT_DIR$/book/book.iml" />
+      <module fileurl="file://$PROJECT_DIR$/out/book_war/book/book.iml" filepath="$PROJECT_DIR$/out/book_war/book/book.iml" />
+      <module fileurl="file://$PROJECT_DIR$/booknew/booknew.iml" filepath="$PROJECT_DIR$/booknew/booknew.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tmp/tmp.iml" filepath="$PROJECT_DIR$/tmp/tmp.iml" />
     </modules>
   </component>
 </project>
