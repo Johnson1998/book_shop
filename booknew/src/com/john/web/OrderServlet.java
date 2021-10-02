@@ -4,6 +4,7 @@ import com.john.pojo.Cart;
 import com.john.pojo.User;
 import com.john.service.OrderService;
 import com.john.service.impl.OrderServiceImpl;
+import com.john.util.JDBCUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,8 @@ public class OrderServlet extends BaseServlet{
             return;
         }
         Integer id = loginUser.getId();
-        String orderId = orderService.createOrder(cart, id);
+        String orderId = null;
+        orderId = orderService.createOrder(cart, id);
         req.getSession().setAttribute("orderId", orderId);
 //        req.setAttribute("orderId", orderId);
 //        req.getRequestDispatcher("/pages/cart/checkout.jsp").forward(req, resp);

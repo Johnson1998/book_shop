@@ -30,7 +30,7 @@
 				if (confirm("你确定要将【"+ $(this).parent().parent().find("td:first").text()+
 						"】商品数量修改为"+ this.value+"吗？")){
 				location.href =
-						"http://localhost:8088/booknew/CartServlet?action=updateCount&count="+count+"&id="+id;
+						"${basePath}CartServlet?action=updateCount&count="+count+"&id="+id;
 				}else{
 					this.value = this.defaultValue;
 				}

@@ -8,10 +8,26 @@
 	<%--	静态包含base标签、css样式 jQuer文件--%>
 	<%@include file="/pages/common/head.jsp"%>
 	<script>
+
+		$(function () {
+			$("#username").blur(function () {
+				var username = this.value;
+				$.getJSON("${basePath}userServlet", "action=ajaxExistsUsername&username=" +
+						username,
+						function
+						(data) {
+					if (data.existsUsername){
+						$("span.errorMsg").text("用户名已存在!");
+					} else {
+						$("span.errorMsg").text("用户名可用!");
+					}
+				})
+			});
+		});
 		// 页面加载完成后
 		$(function () {
 			$("#code_img").click(function () {
-				this.src = "${basePath}/kaptcha.jpg?d=" + new Date();
+				this.src = "${basePath}kaptcha.jpg?d=" + new Date();
 			});
 		});
 		$(function () {
@@ -23,6 +39,7 @@
 
 				// * 2.创建正则表达式对象
 				var usernamePatt = /^\w{5,12}$/;
+
 
 				// * 3.使用test方法验证
 				if (!usernamePatt.test(usernameText)) {
@@ -98,7 +115,6 @@
 				<div id="l_content">
 					<span class="login_word">欢迎注册</span>
 				</div>
-				
 				<div id="content">
 					<div class="login_form">
 						<div class="login_box">
@@ -138,7 +154,7 @@
 									<br />
 									<label>验证码：</label>
 									<input class="itxt" type="text" style="width: 100px;" id="code" name="code"/>
-									<img alt="" src="kaptcha.jpg" style="float: right; margin-right: 40px; width:
+									<img id="code_img" alt="" src="kaptcha.jpg" style="float: right; margin-right: 40px; width:
 									110px;height: 35px;" id="code_img">
 									<br />
 									<br />

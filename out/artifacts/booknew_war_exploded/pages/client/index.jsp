@@ -11,7 +11,11 @@
     $(function () {
       $("button.addToCart").click(function () {
         var bookId = $(this).attr("bookId");
-        location.href = "http://localhost:8088/booknew/CartServlet?action=addItem&id=" + bookId;
+        location.href = "${basePath}CartServlet?action=addItem&id=" + bookId;
+        // 发ajax请求，添加商品到购物车
+        // $.getJSON("http://localhost:8088/booknew/", "action=ajaxAddItem&id=" + bookId, function (data) {
+        //
+        // })
       });
     });
   </Script>
@@ -55,9 +59,9 @@
         </div>
       </c:if>
       <c:if test="${not empty sessionScope.cart.items}">
-      <span>您的购物车中有${sessionScope.cart.totalCount}件商品</span>
+      <span id="cartTotalCount">您的购物车中有${sessionScope.cart.totalCount}件商品</span>
       <div>
-        您刚刚将<span style="color: red">${sessionScope.lastName}</span>加入到了购物车中
+        您刚刚将<span style="color: red " id="cartLastName">${sessionScope.lastName}</span>加入到了购物车中
       </div>
       </c:if>
     </div>

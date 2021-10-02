@@ -26,13 +26,11 @@ public abstract class BaseDao {
         try {
             int var4 = this.queryRunner.update(connection, sql, args);
             return var4;
-        } catch (SQLException var8) {
-            var8.printStackTrace();
-        } finally {
-            JDBCUtils.close(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
-        return -1;
     }
 
     public <T> T queryForOne(Class<T> type, String sql, Object... args) {
@@ -41,13 +39,10 @@ public abstract class BaseDao {
         try {
             Object var5 = this.queryRunner.query(connection, sql, new BeanHandler(type), args);
             return (T) var5;
-        } catch (Exception var9) {
-            var9.printStackTrace();
-        } finally {
-            JDBCUtils.close(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-
-        return null;
     }
 
     public <T> List<T> queryForList(Class<T> type, String sql, Object... args) {
@@ -56,13 +51,11 @@ public abstract class BaseDao {
         try {
             List var5 = (List)this.queryRunner.query(connection, sql, new BeanListHandler(type), args);
             return var5;
-        } catch (Exception var9) {
-            var9.printStackTrace();
-        } finally {
-            JDBCUtils.close(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
-        return null;
     }
 
     public Object queryForSingleValue(String sql, Object... args) {
@@ -71,14 +64,11 @@ public abstract class BaseDao {
         try {
             Object var4 = this.queryRunner.query(connection, sql, new ScalarHandler(), args);
             return var4;
-        } catch (Exception var8) {
-            var8.printStackTrace();
-            var8.printStackTrace();
-        } finally {
-            JDBCUtils.close(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
-        return null;
     }
 }
 

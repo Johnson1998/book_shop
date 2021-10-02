@@ -30,6 +30,7 @@ public class ManagerFilter implements Filter {
 
        }else {
            filterChain.doFilter(servletRequest, servletResponse);
+
        }
     }
 }

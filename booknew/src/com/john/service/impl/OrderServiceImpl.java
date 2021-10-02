@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
         // 保存订单
         orderDao.saveOrder(order);
         // 遍历购物车中每一个商品项转化成订单保存到数据库
-
+//        int i = 12 /0;
         for (Map.Entry<Integer, CartItem>entry : cart.getItems().entrySet()){
            // 获取每一个商品项转化成为订单项保存到数据库
             CartItem cartItem = entry.getValue();
@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
 
         cart.clear();
 
-        //
+
 
         return orderId;
 

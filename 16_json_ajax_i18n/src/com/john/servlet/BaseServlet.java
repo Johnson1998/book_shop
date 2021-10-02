@@ -1,4 +1,4 @@
-package com.john.web;
+package com.john.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +16,10 @@ public abstract class BaseServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 解决请求中文乱码问题
+        req.setCharacterEncoding("UTF-8");
+        // 解决请求乱码问题
+        resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
 
         try {
