@@ -21,7 +21,6 @@
   </Script>
 </head>
 <body>
-
 <div id="header">
   <img class="logo_img" alt="" src="static/img/logo.gif" >
   <div>
@@ -30,7 +29,7 @@
       <a href="pages/user/regist.jsp">注册</a>
     </c:if>
     <c:if test="${not empty sessionScope.user}">
-      <span>欢迎<span class="um_span">${sessionScope.user.username}</span>光临尚硅谷书城</span>
+      <span>欢迎<span class="um_span">${sessionScope.user.username}</span>光临智慧书城书城</span>
       <a href="pages/order/order.jsp">我的订单</a>
       <a href="userServlet?action=logout">注销</a>&nbsp;&nbsp;
     </c:if>
@@ -38,7 +37,7 @@
       <a href="pages/manager/manager.jsp">后台管理</a>
 
   </div>
-  <span class="wel_word">网上书城</span>
+  <span class="wel_word">智慧书城</span>
 </div>
 <div id="main">
   <div id="book">

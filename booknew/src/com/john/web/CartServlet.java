@@ -23,9 +23,7 @@ public class CartServlet extends BaseServlet{
 
     private BookService bookService = new BookServiceImpl();
     protected void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        System.out.println("adsa");
-//
-//        System.out.println("商品编号"+ req.getParameter("id"));
+
         int id = WebUtil.parseInt(req.getParameter("id"), 0);
 
         Book book = bookService.queryBookById(id);
@@ -40,23 +38,10 @@ public class CartServlet extends BaseServlet{
         req.getSession().setAttribute("lastName", cartItem.getName());
         resp.sendRedirect(req.getHeader("Referer"));
 
-        // 1.获取商品编号
-
-        // 2.调用bookService.queryBookById().Book;
-
-        // 3.把book对象转换成为CartItem
-
-        // 4.获取Session中的购物车对象cart
-
-        // 5.调用cart.addItem();添加商品选项
-
-        //6.返回购物车总的商品数量和最后一个添加商品的名称
 
     }
     protected void ajaxAddItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        System.out.println("adsa");
-//
-//        System.out.println("商品编号"+ req.getParameter("id"));
+
         int id = WebUtil.parseInt(req.getParameter("id"), 0);
 
         Book book = bookService.queryBookById(id);
@@ -69,19 +54,7 @@ public class CartServlet extends BaseServlet{
         cart.addItem(cartItem);
 
         req.getSession().setAttribute("lastName", cartItem.getName());
-//        resp.sendRedirect(req.getHeader("Referer"));
 
-        // 1.获取商品编号
-
-        // 2.调用bookService.queryBookById().Book;
-
-        // 3.把book对象转换成为CartItem
-
-        // 4.获取Session中的购物车对象cart
-
-        // 5.调用cart.addItem();添加商品选项
-
-        //6.返回购物车总的商品数量和最后一个添加商品的名称
         Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("totalCount", cart.getTotalPrice());
         resultMap.put("lastname", cartItem.getName());

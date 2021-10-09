@@ -23,6 +23,7 @@ public class ClientBookServlet extends BaseServlet{
         Page<Book> page = this.bookService.page(pageNo, pageSize);
         page.setUrl("Client/bookServlet?action=page");
         req.setAttribute("page", page);
+        System.out.println(page);
         req.getRequestDispatcher("/pages/client/index.jsp").forward(req, resp);
     }
 
@@ -41,6 +42,7 @@ public class ClientBookServlet extends BaseServlet{
         }
         page.setUrl(sb.toString());
         req.setAttribute("page", page);
+
         req.getRequestDispatcher("/pages/client/index.jsp").forward(req, resp);
 
     }

@@ -1,11 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>尚硅谷会员登录页面</title>
+<title>智慧书城会员登录页面</title>
 	<%--	静态包含base标签、css样式 jQuer文件--%>
 	<%@include file="/pages/common/head.jsp"%>
+
 </head>
 <body>
 		<div id="login_header">
@@ -22,7 +23,7 @@
 					<div class="login_form">
 						<div class="login_box">
 							<div class="tit">
-								<h1>尚硅谷会员</h1>
+								<h1>智慧书城会员</h1>
 								<a href="pages/user/regist.jsp">立即注册</a>
 							</div>
 							<div class="msg_cont">
@@ -45,6 +46,9 @@
 									<br />
 									<br />
 									<input type="submit" value="登录" id="sub_btn" />
+									<div class="bott">
+										<a href="pages/user/forget_password.jsp">忘记密码</a>
+									</div>
 								</form>
 							</div>
 							

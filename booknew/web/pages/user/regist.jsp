@@ -1,13 +1,42 @@
 <%@ page import="com.john.pojo.User" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>尚硅谷会员注册页面</title>
+<title>智慧书城会员注册页面</title>
 	<%--	静态包含base标签、css样式 jQuer文件--%>
 	<%@include file="/pages/common/head.jsp"%>
 	<script>
+		var InterValObj; //timer变量做时间控制
+		var count = 60; // 间隔函数
+		var curCount; //当前剩余时间
+		$(function () {
+			$("#sendCode").click(function () {
+				if ($("#email").val()){
+				curCount = count;
+				$("#sendCode").attr("disabled", "true");
+				$("#sendCode").val(curCount+"秒重新发送");
+				InterValObj = window.setInterval(setRemainTime, 1000);
+				$.post("${basePath}userServlet", "action=ajaxSendEmailCode&email="+$("#email").val(),
+					function (data) {
+						alert("发送成功");
+					} )
+				}else {
+					alert("邮箱号不可为空");
+				}
+			});
+			function setRemainTime(){
+				if (curCount == 0){
+					window.clearInterval(InterValObj);
+					$("#sendCode").removeAttr("disabled")
+					$("#sendCode").val("重新发送验证码");
+				}else{
+					curCount--;
+					$("#sendCode").val(curCount+"秒重新发送");
+				}
+			}
+		});
 
 		$(function () {
 			$("#username").blur(function () {
@@ -99,8 +128,11 @@
 	</script>
 <style type="text/css">
 	.login_form{
-		height:420px;
+		height:480px;
 		margin-top: 25px;
+	}
+	#sendCode{
+		font-size: 15px;
 	}
 	
 </style>
@@ -119,7 +151,7 @@
 					<div class="login_form">
 						<div class="login_box">
 							<div class="tit">
-								<h1>注册尚硅谷会员</h1>
+								<h1>注册智慧书城会员</h1>
 								<span class="errorMsg">
 <%--									<%=request.getAttribute("msg")==null?"":request.getAttribute("msg")%>--%>
 										${ requestScope.msg }
@@ -128,38 +160,52 @@
 							<div class="form">
 								<form action="userServlet" method="post">
 									<input type="hidden" name="action" value="register">
+									<div>
 									<label>用户名称：</label>
 									<input class="itxt" type="text" placeholder="请输入用户名"
 										   autocomplete="off" tabindex="1" name="username" id="username"
 									value="${ requestScope.username }"
 									/>
-									<br />
-									<br />
+									</div>
+
+									<div>
 									<label>用户密码：</label>
 									<input class="itxt" type="password" placeholder="请输入密码"
 										   autocomplete="off" tabindex="1" name="password" id="password" />
-									<br />
-									<br />
+									</div>
+
+									<div>
 									<label>确认密码：</label>
 									<input class="itxt" type="password" placeholder="确认密码"
 										   autocomplete="off" tabindex="1" name="repwd" id="repwd" />
-									<br />
-									<br />
+									</div>
+
+									<div>
 									<label>电子邮件：</label>
 									<input class="itxt" type="text" placeholder="请输入邮箱地址"
 										   autocomplete="off" tabindex="1" name="email" id="email"
 										   value="${ requestScope.email }"
 									/>
-									<br />
-									<br />
-									<label>验证码：</label>
-									<input class="itxt" type="text" style="width: 100px;" id="code" name="code"/>
+
+									</div>
+
+									<div>
+									<label>邮箱验证：</label>
+									<input class="itxt" type="text" style="width: 100px;" name="emailCode" id="emailCode"
+									/>
+										<input type="button" id="sendCode" value="发送验证码" style="
+										margin-left: 10px; margin-top: 10px">
+									</div>
+
+									<div>
+									<label>&nbsp;&nbsp;&nbsp;验证码：</label>
+									<input class="itxt" type="text" style="width: 100px;" id="code" name="code" />
 									<img id="code_img" alt="" src="kaptcha.jpg" style="float: right; margin-right: 40px; width:
 									110px;height: 35px;" id="code_img">
-									<br />
+									</div>
 									<br />
 									<input type="submit" value="注册" id="sub_btn" />
-									
+
 								</form>
 							</div>
 							

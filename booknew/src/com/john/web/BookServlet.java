@@ -32,7 +32,6 @@ public class BookServlet extends BaseServlet {
     }
 
     protected void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
         Book book = (Book)WebUtil.copyParamToBean(req.getParameterMap(), new Book());
         this.bookService.addBook(book);
         resp.sendRedirect(req.getContextPath() + "/manager/bookServlet?action=page$pageNo=" + req.getParameter(

@@ -24,4 +24,10 @@ import com.john.pojo.User;
             String sql = "insert into t_user(username, password, email)values(?, ?, ?)";
             return this.update(sql, new Object[]{user.getUsername(), user.getPassword(), user.getEmail()});
         }
+
+    @Override
+    public int updateUser(String username , String newPassword) {
+        String sql = "update t_user set password = ? where username = ?";
+        return this.update(sql, new Object[]{newPassword, username});
     }
+}

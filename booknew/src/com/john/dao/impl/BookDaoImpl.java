@@ -29,12 +29,12 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     }
 
     public Book queryBookById(Integer id) {
-        String sql = "select id, name, author, price, sales, stock, 'img_path' imgpath from t_book where id=?";
+        String sql = "select id, name, author, price, sales, stock, `img_path` imgPath from t_book where id=?";
         return (Book)this.queryForOne(Book.class, sql, new Object[]{id});
     }
 
     public List<Book> queryBooks() {
-        String sql = "select id, name, author, price, sales, stock, 'img_path' imgpath from t_book";
+        String sql = "select id, name, author, price, sales, stock, `img_path` imgPath from t_book";
         return this.queryForList(Book.class, sql, new Object[0]);
     }
 
@@ -45,7 +45,7 @@ public class BookDaoImpl extends BaseDao implements BookDao {
     }
 
     public List<Book> queryForPageItems(int begin, int pageSize) {
-        String sql = "select id, name, author, price, sales, stock, 'img_path' imgpath from t_book limit ?,?";
+        String sql = "select id, name, author, price, sales, stock, `img_path` imgPath from t_book limit ?,?";
         return this.queryForList(Book.class, sql, new Object[]{begin, pageSize});
     }
 
@@ -58,7 +58,7 @@ public class BookDaoImpl extends BaseDao implements BookDao {
 
     @Override
     public List<Book> queryForPageItemsByPrice(int begin, int pageSize, int min, int max) {
-        String sql = "select id, name, author, price, sales, stock, 'img_path' imgpath " +
+        String sql = "select id, name, author, price, sales, stock, `img_path` imgPath " +
                 "from t_book  where price between ? and ? order by price limit ?,?";
         return this.queryForList(Book.class, sql, new Object[]{min, max, begin, pageSize, });
     }

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>尚硅谷会员注册页面</title>
+<title>智慧书城会员注册页面</title>
 	<%--	静态包含base标签、css样式 jQuer文件--%>
 	<%@include file="/pages/common/head.jsp"%>
 <style type="text/css">
@@ -19,14 +19,14 @@
 </head>
 <body>
 		<div id="header">
-				<img class="logo_img" alt="" src="web/static/img/logo.gif" >
+				<img class="logo_img" alt="" src="static/img/logo.gif" >
 				<span class="wel_word"></span>
 				<%@ include file="/pages/common/login_success_menu.jsp"%>
 		</div>
 		
 		<div id="main">
 		
-			<h1>注册成功! <a href="web/index.jsp">转到主页</a></h1>
+			<h1>注册成功! <a href="index.jsp">转到主页</a></h1>
 	
 		</div>
 

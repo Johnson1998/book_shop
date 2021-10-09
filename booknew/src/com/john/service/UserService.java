@@ -12,4 +12,8 @@ public interface UserService {
     User login(User var1);
 
     boolean existsUsername(String var1);
+
+    void updatePassword(String username , String newPassword);
+
+    boolean isUsernameEqualEmail(String username, String email);
 }

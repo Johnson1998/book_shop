@@ -12,4 +12,6 @@ public interface UserDao {
     User queryUserByUsernameAndPassword(String var1, String var2);
 
     int saveUser(User var1);
+
+    int updateUser(String username , String newPassword);
 }

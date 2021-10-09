@@ -18,7 +18,7 @@ import java.io.IOException;
 public class OrderServlet extends BaseServlet{
     private OrderService orderService = new OrderServiceImpl();
     /**
-     * Éú³É¶©µ¥
+     * ç”Ÿæˆè®¢å•
      * @param req
      * @param resp
      * @throws ServletException
@@ -35,8 +35,6 @@ public class OrderServlet extends BaseServlet{
         String orderId = null;
         orderId = orderService.createOrder(cart, id);
         req.getSession().setAttribute("orderId", orderId);
-//        req.setAttribute("orderId", orderId);
-//        req.getRequestDispatcher("/pages/cart/checkout.jsp").forward(req, resp);
 
         resp.sendRedirect(req.getContextPath() + "/pages/cart/checkout.jsp");
     }

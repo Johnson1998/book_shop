@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="bottom">
 		<span>
-			尚硅谷书城.Copyright &copy;2015
+			© 2021 zhangshen.xyz All Rights Reserved <a href="https://beian.miit.gov.cn/" target="_blank">ICP
+			备案号:</a>
 		</span>
 </div>

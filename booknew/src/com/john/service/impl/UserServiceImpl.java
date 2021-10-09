@@ -26,5 +26,15 @@ public class UserServiceImpl implements UserService {
     public boolean existsUsername(String username) {
         return this.userDao.queryUserByUsername(username) != null;
     }
+
+    @Override
+    public void updatePassword(String username , String newPassword) {
+        this.userDao.updateUser(username, newPassword);
+    }
+
+    @Override
+    public boolean isUsernameEqualEmail(String username, String email) {
+        return this.userDao.queryUserByUsername(username).getEmail().equals(email);
+    }
 }
 

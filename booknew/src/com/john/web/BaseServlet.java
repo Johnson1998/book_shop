@@ -12,18 +12,17 @@ import java.lang.reflect.Method;
  * @create 2021-09-2610:00
  */
 public abstract class BaseServlet extends HttpServlet {
-    public BaseServlet() {
-    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
-
         try {
             Method method = this.getClass().getDeclaredMethod(action, HttpServletRequest.class, HttpServletResponse.class);
             method.invoke(this, req, resp);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException(e); // �쳣�׸�filter
+            throw new RuntimeException(e); // 异常抛给filter
         }
 
     }
