@@ -8,7 +8,7 @@ import java.util.Date;
  * @create 2021-09-2920:31
  */
 public class Order {
-    public Order(String orderId, Date createTime, BigDecimal price, Integer status, Integer userId) {
+    public Order(String orderId, String createTime, BigDecimal price, Integer status, Integer userId) {
         this.orderId = orderId;
         this.createTime = createTime;
         this.price = price;
@@ -31,9 +31,9 @@ public class Order {
     }
 
     private String orderId;
-    private Date createTime;
+    private String createTime;
     private BigDecimal price;
-//    o±íÊ¾Î´·¢»õ£¬1±íÊ¾ÒÑ·¢»õ£¬2±íÊ¾ÒÑÇ©ÊÕ
+//    0æœªå‘è´§ 1å·²å‘è´§ 2 å·²æ”¶è´§
     private Integer status = 0;
     private Integer userId;
 
@@ -45,11 +45,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

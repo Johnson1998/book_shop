@@ -8,8 +8,10 @@ import com.john.dao.impl.OrderDaoImpl;
 import com.john.dao.impl.OrderItemDaoImpl;
 import com.john.pojo.*;
 import com.john.service.OrderService;
+import com.john.util.DateUtil;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,24 +24,24 @@ public class OrderServiceImpl implements OrderService {
     private BookDao bookDao = new BookDaoImpl();
     @Override
     public String createOrder(Cart cart, Integer userId) {
-        // ¶©µ¥ºÅ===Î¨Ò»ĞÔ
+        // è®¢å•å·===å”¯ä¸€æ€§ å­˜åœ¨é—®é¢˜
         String orderId = System.currentTimeMillis() + "" +userId;
-        // ´´½¨Ò»¸ö¶©µ¥¶ÔÏó
-        Order order = new Order(orderId, new Date(), cart.getTotalPrice(), 0, userId);
-        // ±£´æ¶©µ¥
+        // åˆ›å»ºä¸€ä¸ªè®¢å•å¯¹è±¡
+        Order order = new Order(orderId, DateUtil.DateToString(new Date()), cart.getTotalPrice(), 0, userId);
+        // ä¿å­˜è®¢å•
         orderDao.saveOrder(order);
-        // ±éÀú¹ºÎï³µÖĞÃ¿Ò»¸öÉÌÆ·Ïî×ª»¯³É¶©µ¥±£´æµ½Êı¾İ¿â
+        // éå†è´­ç‰©è½¦ä¸­æ¯ä¸€ä¸ªå•†å“é¡¹è½¬åŒ–æˆè®¢å•ä¿å­˜åˆ°æ•°æ®åº“
 //        int i = 12 /0;
         for (Map.Entry<Integer, CartItem>entry : cart.getItems().entrySet()){
-           // »ñÈ¡Ã¿Ò»¸öÉÌÆ·Ïî×ª»¯³ÉÎª¶©µ¥Ïî±£´æµ½Êı¾İ¿â
+           // è·å–æ¯ä¸€ä¸ªå•†å“é¡¹è½¬åŒ–æˆä¸ºè®¢å•é¡¹ä¿å­˜åˆ°æ•°æ®åº“
             CartItem cartItem = entry.getValue();
-            // ×ª»»ÎªÃ¿Ò»¸ö¶©µ¥Ïî
+            // è½¬æ¢ä¸ºæ¯ä¸€ä¸ªè®¢å•é¡¹
             OrderItem orderItem = new OrderItem(null, cartItem.getName(), cartItem.getCount(), cartItem.getPrice(),
                     cartItem.getTotalPrice(), orderId);
-            // ±£´æ¶©µ¥Ïîµ½Êı¾İ¿â
+            // ä¿å­˜è®¢å•é¡¹åˆ°æ•°æ®åº“
             orderItemDao.saveOrderItem(orderItem);
 
-                //¸üĞÂ¿â´æºÍÏúÁ¿
+                //æ›´æ–°åº“å­˜å’Œé”€é‡
             Book book = bookDao.queryBookById(cartItem.getId());
             book.setSales( book.getSales() + cartItem.getCount());
             book.setStock( book.getStock() - cartItem.getCount());
@@ -53,5 +55,25 @@ public class OrderServiceImpl implements OrderService {
 
         return orderId;
 
+    }
+
+    @Override
+    public List<Order> showAllOrders() {
+        return orderDao.queryOrders();
+    }
+
+    @Override
+    public void sendOrder(String orderId) {
+        orderDao.changeOrderStatus(orderId, 1);
+    }
+
+    @Override
+    public List<Order> queryOrderByUserId(int userId){
+        return orderDao.queryOrderByUserId(userId);
+    }
+
+    @Override
+    public List<OrderItem> queryOrderItemByOrderId(String orderId) {
+        return orderItemDao.queryOrderItemByOrderId(orderId);
     }
 }

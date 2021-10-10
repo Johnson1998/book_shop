@@ -25,7 +25,7 @@ public class Cart {
     public BigDecimal getTotalPrice() {
         totalPrice = new BigDecimal(0);
         for (Map.Entry<Integer, CartItem>entry : items.entrySet()){
-            totalPrice = totalPrice.add(entry.getValue().getPrice());
+            totalPrice = totalPrice.add(entry.getValue().getTotalPrice());
         }
         return totalPrice;
     }
@@ -44,23 +44,23 @@ public class Cart {
     private Map<Integer, CartItem> items = new LinkedHashMap<Integer, CartItem>();
 
     /**
-     * Ôö¼ÓÉÌÆ·Ïî
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½
      * @param cartItem
      */
     public void addItem(CartItem cartItem){
-        // ÏÈ²é¿´¹ºÎï³µÖÐÊÇ·ñÒÑÌí¼Ó´ËÉÌÆ·£¬ÈçÒÑ¾­Ìí¼Ó£¬ÔòÊýÁ¿ÀÛ¼Ó£¬×Ü½ð¶î¸üÐÂ£¬Èç¹ûÃ»ÓÐÌí¼Ó¹ý£¬Ö±½Ó·Åµ½¼¯ºÏÖÐ¼´¿É
+        // ï¿½È²é¿´ï¿½ï¿½ï¿½ï³µï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¼Ó£ï¿½ï¿½Ü½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½Ö±ï¿½Ó·Åµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½
         CartItem item = items.get(cartItem.getId());
         if (item == null){
             items.put(cartItem.getId(), cartItem);
         }else {
-            //ÒÑ¾­Ìí¼Ó¹ýµÄÇé¿ö
-            item.setCount( item.getCount() + 1); // ÊýÁ¿ÀÛ¼Ó
-            item.setTotalPrice(item.getPrice().multiply(new BigDecimal(item.getCount()))); // ¸üÐÂ×Ü½ð¶î
+            //ï¿½Ñ¾ï¿½ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            item.setCount( item.getCount() + 1); // ï¿½ï¿½ï¿½ï¿½ï¿½Û¼ï¿½
+            item.setTotalPrice(item.getPrice().multiply(new BigDecimal(item.getCount()))); // ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
         }
     }
 
     /**
-     * É¾³ýÉÌÆ·Ïî
+     * É¾ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½
      * @param id
      */
     public void deleteItem(Integer id){
@@ -68,21 +68,21 @@ public class Cart {
     }
 
     /**
-     * Çå¿Õ¹ºÎï³µ
+     * ï¿½ï¿½Õ¹ï¿½ï¿½ï³µ
      */
     public void clear(){
         items.clear();
     }
     /**
-     * ÐÞ¸ÄÉÌÆ·ÊýÁ¿
+     * ï¿½Þ¸ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
      */
     public void updateCount(Integer id, Integer count){
-        // ²é¿´¹ºÎï³µÊÇ·ñÓÐ´ËÉÌÆ·£¬Èç¹ûÓÐ£¬ÐÞ¸ÄÉÌÆ·ÊýÁ¿£¬¸üÐÂ×Ü½ð¶î
+        // ï¿½é¿´ï¿½ï¿½ï¿½ï³µï¿½Ç·ï¿½ï¿½Ð´ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
 
         CartItem cartItem = items.get(id);
         if (cartItem != null){
             cartItem.setCount(count);
-            cartItem.setTotalPrice(cartItem.getPrice().multiply(new BigDecimal(cartItem.getCount()))); // ¸üÐÂ×Ü½ð¶î
+            cartItem.setTotalPrice(cartItem.getPrice().multiply(new BigDecimal(cartItem.getCount()))); // ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
         }
     }
 

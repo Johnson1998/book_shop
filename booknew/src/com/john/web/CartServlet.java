@@ -56,7 +56,7 @@ public class CartServlet extends BaseServlet{
         req.getSession().setAttribute("lastName", cartItem.getName());
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        resultMap.put("totalCount", cart.getTotalPrice());
+        resultMap.put("totalCount", cart.getTotalCount());
         resultMap.put("lastname", cartItem.getName());
         Gson gson = new Gson();
         String resultMapString = gson.toJson(resultMap);
@@ -73,6 +73,7 @@ public class CartServlet extends BaseServlet{
             resp.sendRedirect(req.getHeader("Referer"));
         }
     }
+
     protected void clear(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cart cart = (Cart) req.getSession().getAttribute("cart");
         if (cart != null){

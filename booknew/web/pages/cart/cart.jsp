@@ -26,11 +26,12 @@
 				return confirm("你确定要情况购物车吗？")
 			});
 			$(".updateCount").change(function () {
+				var goodsName = $(this).parent().parent().find("td:first").text();
 				var id = $(this).attr("bookId");
-				if (confirm("你确定要将【"+ $(this).parent().parent().find("td:first").text()+
-						"】商品数量修改为"+ this.value+"吗？")){
-				location.href =
-						"${basePath}CartServlet?action=updateCount&count="+count+"&id="+id;
+				// var isChange = confirm("你确定要将【"+ goodsName+ "】商品数量修改为"+ this.value+"吗？");
+				if (confirm("你确定要将【"+ goodsName+ "】商品数量修改为"+ this.value+"吗？")){
+
+				location.href = "${basePath}CartServlet?action=updateCount&count="+this.value+"&id="+id;
 				}else{
 					this.value = this.defaultValue;
 				}

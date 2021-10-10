@@ -11,11 +11,18 @@
     $(function () {
       $("button.addToCart").click(function () {
         var bookId = $(this).attr("bookId");
-        location.href = "${basePath}CartServlet?action=addItem&id=" + bookId;
-        // 发ajax请求，添加商品到购物车
-        // $.getJSON("http://localhost:8088/booknew/", "action=ajaxAddItem&id=" + bookId, function (data) {
-        //
-        // })
+        <%--if(${empty sessionScope.cart}){--%>
+          //使用表单实现购物车功能
+          location.href = "${basePath}CartServlet?action=addItem&id=" + bookId;
+        <%--}else{--%>
+        <%--&lt;%&ndash;location.href = "${basePath}CartServlet?action=addItem&id=" + bookId;&ndash;%&gt;--%>
+        <%--// 发ajax请求，添加商品到购物车--%>
+        <%--$.getJSON("${basePath}CartServlet", "action=ajaxAddItem&id=" + bookId, function (data) {--%>
+        <%--  $("#cartTotalCount").text("您的购物车中有" + data.totalCount + "件商品")--%>
+        <%--  $("#cartLastName").text(data.lastname)--%>
+
+        <%--})--%>
+        // }
       });
     });
   </Script>
@@ -30,7 +37,7 @@
     </c:if>
     <c:if test="${not empty sessionScope.user}">
       <span>欢迎<span class="um_span">${sessionScope.user.username}</span>光临智慧书城书城</span>
-      <a href="pages/order/order.jsp">我的订单</a>
+      <a href="OrderServlet?action=showMyOrders&userId=${sessionScope.user.id}">我的订单</a>
       <a href="userServlet?action=logout">注销</a>&nbsp;&nbsp;
     </c:if>
       <a href="pages/cart/cart.jsp">购物车</a>

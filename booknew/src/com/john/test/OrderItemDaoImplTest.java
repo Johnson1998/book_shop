@@ -1,5 +1,6 @@
 package com.john.test;
 
+import com.john.dao.OrderItemDao;
 import com.john.dao.impl.OrderItemDaoImpl;
 import com.john.pojo.OrderItem;
 import org.junit.Test;
@@ -20,5 +21,11 @@ public class OrderItemDaoImplTest {
         orderItemDao.saveOrderItem(new OrderItem(null, "eawew", 1, new BigDecimal(100), new BigDecimal(100), "1234"));
         orderItemDao.saveOrderItem(new OrderItem(null, "zcxzx", 2, new BigDecimal(100), new BigDecimal(100), "1234"));
         orderItemDao.saveOrderItem(new OrderItem(null, "123", 3, new BigDecimal(100), new BigDecimal(100), "1234"));
+    }
+
+    @Test
+    public void queryOrderItemByOrderId() {
+        OrderItemDao orderItemDao = new OrderItemDaoImpl();
+        System.out.println(orderItemDao.queryOrderItemByOrderId("163384845801433"));
     }
 }

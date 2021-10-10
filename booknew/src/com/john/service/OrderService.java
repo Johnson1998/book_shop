@@ -1,6 +1,10 @@
 package com.john.service;
 
 import com.john.pojo.Cart;
+import com.john.pojo.Order;
+import com.john.pojo.OrderItem;
+
+import java.util.List;
 
 /**
  * @author John
@@ -8,4 +12,12 @@ import com.john.pojo.Cart;
  */
 public interface OrderService {
     public String createOrder(Cart cart, Integer userId);
+
+    public List<Order> showAllOrders();
+
+    public void sendOrder(String orderId);
+
+    public List<Order> queryOrderByUserId(int userId);
+
+    public List<OrderItem> queryOrderItemByOrderId(String orderId);
 }
